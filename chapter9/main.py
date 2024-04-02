@@ -4,10 +4,10 @@ import json
 from recipe_generator import RecipeGenerator
 from config import OPENAI_API_KEY, ES_ENDPOINT, ES_USERNAME, ES_PASSWORD
 
-# Initialize the RecipeGenerator
+# RecipeGenerator 초기화
 generator = RecipeGenerator(OPENAI_API_KEY)
 
-# Elasticsearch query
+# 일래스틱서치 조회
 def elasticsearch_query(query):
     headers = {'Content-Type': 'application/json'}
     response = requests.get(ES_ENDPOINT, headers=headers, data=json.dumps(query), auth=(ES_USERNAME, ES_PASSWORD))
@@ -19,7 +19,7 @@ def elasticsearch_query(query):
     }
     return result
 
-# Rest of your Streamlit code
+# 나머지 Streamlit 코드
 with open("style.css") as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
