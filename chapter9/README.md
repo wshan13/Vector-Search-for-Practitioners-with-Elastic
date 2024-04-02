@@ -21,7 +21,7 @@ CookBot은 OpenAI의 GPT-4 모델, 일래스틱서치, Streamlit을 기반으로
 라이브러리는 pip를 통해 설치할 수 있습니다.
 
 ```bash
-pip install openai streamlit elasticsearch requests`
+pip install openai streamlit elasticsearch requests
 ```
 
 ## 시작하기
