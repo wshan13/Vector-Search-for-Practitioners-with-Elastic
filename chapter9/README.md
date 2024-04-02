@@ -68,9 +68,6 @@ Streamlit 서버를 시작하려면 아래와 같이 입력하세요.
 streamlit run app.py
 ```
 
-The Streamlit app will be served on `http://localhost:8501`. Open this URL in your web browser to interact with CookBot.
-
-
 Streamlit 앱은 `http://localhost:8501`에서 동작합니다. 이 URL을 웹 브라우저에서 열어 CookBot을 사용하세요.
 
 ## 사용법
