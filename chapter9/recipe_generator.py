@@ -1,11 +1,15 @@
-import openai
 import json
-from config import OPENAI_API_KEY
+
+from openai import OpenAI
+
 
 class RecipeGenerator:
     def __init__(self, api_key):
         self.api_key = api_key
-        openai.api_key = self.api_key
+        # openai.api_key = self.api_key
+        self.client = OpenAI(
+            api_key=self.api_key
+        )
 
     def generate(self, recipe):
         prompts = [{"role": "user", "content": json.dumps(recipe)}]
@@ -15,7 +19,7 @@ class RecipeGenerator:
         }
         prompts.append(instruction)
 
-        generated_content = openai.ChatCompletion.create(
+        generated_content = self.client.chat.completions.create(
             model="gpt-4",
             messages=prompts,
             max_tokens=1000
