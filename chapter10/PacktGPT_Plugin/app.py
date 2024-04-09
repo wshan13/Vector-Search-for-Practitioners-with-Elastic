@@ -22,12 +22,12 @@ os.environ["OPENAI_API_KEY"] = openai.api_key
 
 model = "gpt-3.5-turbo-0301"
 
-# Connect to Elastic Cloud cluster
+# 일래스틱 클라우드에 접속
 def es_connect(cid, user, passwd):
   es = Elasticsearch(cloud_id=cid, http_auth=(user, passwd))
   return es
 
-# Search ElasticSearch index and return body and URL of the result
+# 일래스틱서치 인덱스를 검색하고 결과 본문과 URL 반환
 def ESSearch(query_text):
 
   print(query_text)
@@ -38,7 +38,7 @@ def ESSearch(query_text):
   cu = os.environ['cloud_user']
   es = es_connect(cid, cu, cp)
 
-  # Elasticsearch query (BM25)
+  # 일래스틱서치 BM25 질의문
   query = {
     "bool": {
       "filter": [
@@ -90,7 +90,7 @@ def ESSearch(query_text):
   elastic_bot = App()
 
 
-   # Assuming 'resp' is the response object you've mentioned
+   # 'resp'가 언급한 응답 객체라고 가정
   for hit in resp['hits']['hits']:
     for url in hit['fields']['url']:
         print(url)
@@ -111,13 +111,13 @@ def truncate_text(text, max_tokens):
   return ' '.join(tokens[:max_tokens])
 
 
-# Generate a response from ChatGPT based on the given prompt
+# 주어진 프롬프트를 바탕으로 ChatGPT의 응답 생성
 def chat_gpt(prompt,
              model="gpt-3.5-turbo",
              max_tokens=1024,
              max_context_tokens=4000,
              safety_margin=5):
-  # Truncate the prompt content to fit within the model's context length
+  # 모델의 컨텍스트 길이에 맞게 프롬프트 내용 자르기
   truncated_prompt = truncate_text(
     prompt, max_context_tokens - max_tokens - safety_margin)
 

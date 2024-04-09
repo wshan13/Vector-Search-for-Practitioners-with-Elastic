@@ -2,15 +2,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Constants
+# 상수
 k = 5
 threshold = 2
 
-# Sigmoid Function
+# 시그모이드 함수 정의
 def soc_function(R, C, T, A, k, wR=1, wC=1, wT=1, wA=1, threshold=0):
     return 1 / (1 + np.exp(-k * (wR*R + wC*C + wT*T + wA*A - threshold)))
 
-# 1. Sigmoid function curve
+# 1. 시그모이드 함수 곡선
 x = np.linspace(-10, 10, 400)
 y = 1 / (1 + np.exp(-x))
 
@@ -22,16 +22,16 @@ plt.ylabel("Sigmoid(x)")
 plt.grid(True)
 plt.show()
 
-# 2. 3D Plot for interaction
+# 2. 상호작용 3D 그림
 from mpl_toolkits.mplot3d import Axes3D
 
-# Generating random data for the example (you might want to use real data)
+# 예제를 위해 임의의 데이터를 생성했지만, 실제 데이터를 사용하면 더 좋을 수 있습니다.
 R_vals = np.linspace(0, 1, 10)
 C_vals = np.linspace(0, 1, 10)
 T_vals = np.linspace(0, 1, 10)
 
 R, C, T = np.meshgrid(R_vals, C_vals, T_vals)
-A_val = 0.5  # fixed for simplicity in this example
+A_val = 0.5  # 이 예제에서는 단순화를 위해 고정
 SoC = soc_function(R, C, T, A_val, k)
 
 fig = plt.figure(figsize=(10, 8))
@@ -44,7 +44,7 @@ ax.set_title("Figure 2: Interaction of R, C, and T")
 fig.colorbar(scatter, ax=ax, label='SoC Value')  # This adds the colorbar
 plt.show()
 
-# 3. Effect of varying k
+# 3. k의 변화가 미치는 영향
 ks = [1, 5, 10]
 R_val, C_val, T_val, A_val = 0.5, 0.6, 0.7, 0.8
 
@@ -58,8 +58,8 @@ plt.legend()
 plt.grid(True)
 plt.show()
 
-# 4. Heatmap of weights
-# For simplicity, we'll consider the interaction between two weights, say wR and wC.
+# 4. 가중치의 히트맵
+# 단순화를 위해, 두 가중치 간(wR과 wC)의 상호작용을 고려해 보겠습니다.
 
 weights = np.linspace(0, 2, 50)
 wR, wC = np.meshgrid(weights, weights)
@@ -74,4 +74,4 @@ plt.xticks(ticks=np.linspace(0, len(weights)-1, 5), labels=np.linspace(0, 2, 5))
 plt.yticks(ticks=np.linspace(0, len(weights)-1, 5), labels=np.linspace(0, 2, 5))
 plt.show()
 
-# Note: For the remaining figures and tables, we would need more specific scenarios or datasets to plot them effectively.
+# Note : 나머지 그림과 표를 효과적으로 그리기 위해서는 더 구체적인 시나리오나 데이터 세트가 필요합니다.
